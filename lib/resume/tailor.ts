@@ -85,7 +85,7 @@ const SYNONYMS: Record<string, string[]> = {
   kubernetes: ["devops", "docker", "cloud"],
   postgres: ["sql", "database", "data"],
   mongodb: ["database", "data"],
-  python: ["ai-adjacent", "etl", "pipelines"],
+  python: ["ai-adjacent", "etl", "pipelines", "fastapi"],
   langchain: ["ai", "rag", "agents"],
   rag: ["ai", "retrieval", "langchain"],
   agent: ["ai", "agents", "langgraph"],
@@ -114,10 +114,7 @@ function tokenize(text: string): Set<string> {
 
 function scoreText(text: string, tags: string[], keywords: Set<string>): number {
   if (keywords.size === 0) return 0;
-  const haystack = new Set([
-    ...tokenize(text),
-    ...tags.map((tag) => tag.toLowerCase()),
-  ]);
+  const haystack = new Set([...tokenize(text), ...tags.map((tag) => tag.toLowerCase())]);
   let score = 0;
   for (const keyword of keywords) {
     if (haystack.has(keyword)) score += 2;
@@ -135,10 +132,16 @@ function rankBullets(role: Role, keywords: Set<string>, emphasis: Emphasis): Rol
   const ranked = role.bullets.map((bullet, index) => {
     let score = scoreText(bullet.text, bullet.tags, keywords);
     if (emphasis === "ai" && bullet.tags.includes("ai-adjacent")) score += 4;
-    if (emphasis === "ai" && (bullet.tags.includes("data") || bullet.tags.includes("python") || bullet.tags.includes("observability"))) {
+    if (
+      emphasis === "ai" &&
+      (bullet.tags.includes("data") || bullet.tags.includes("python") || bullet.tags.includes("observability"))
+    ) {
       score += 2;
     }
-    if (emphasis === "fullstack" && (bullet.tags.includes("frontend") || bullet.tags.includes("backend") || bullet.tags.includes("cloud"))) {
+    if (
+      emphasis === "fullstack" &&
+      (bullet.tags.includes("frontend") || bullet.tags.includes("backend") || bullet.tags.includes("cloud"))
+    ) {
       score += 2;
     }
     return { bullet, index, score };
@@ -156,7 +159,7 @@ function rankSkills(groups: SkillGroup[], keywords: Set<string>, emphasis: Empha
     index,
     score:
       scoreText(`${group.label} ${group.items.join(" ")}`, [], keywords) +
-      (emphasis === "ai" && /python|data/i.test(group.label) ? 8 : 0),
+      (emphasis === "ai" && /ai|llm|python|data/i.test(group.label) ? 8 : 0),
   }));
   ranked.sort((a, b) => b.score - a.score || a.index - b.index);
   return ranked.map((entry) => entry.group);
@@ -164,8 +167,8 @@ function rankSkills(groups: SkillGroup[], keywords: Set<string>, emphasis: Empha
 
 function aiSummary(targetRole: string): string[] {
   return [
-    ...resume.summary.slice(0, 3),
-    `Recently practicing agentic AI (~6–7 months): LangChain, LangGraph, AutoGen, CrewAI, and the OpenAI SDK, including RAG chatbots and multi-agent workflows. This is current hands-on work, not multi-year AI production tenure.`,
+    ...resume.summary,
+    ...resume.appliedAI.map((item) => `${item.title}: ${item.text}`),
     `Targeting ${targetRole} roles that combine a full-stack and cloud foundation with retrieval-augmented and agent-based systems.`,
   ];
 }
@@ -192,13 +195,6 @@ export function tailorResume(input: GenerateResumeInput): TailoredResume {
 
   const skills = rankSkills(resume.skills, keywords, emphasis);
 
-  if (emphasis === "ai") {
-    skills.unshift({
-      label: "AI & agents (recent practice)",
-      items: resume.aiPractice.stack,
-    });
-  }
-
   const certifications =
     emphasis === "ai"
       ? [
@@ -207,38 +203,41 @@ export function tailorResume(input: GenerateResumeInput): TailoredResume {
         ]
       : resume.certifications;
 
-  const projects = emphasis === "ai" ? resume.projects : resume.projects.filter((project) => project.kind === "capstone");
-
   return {
     ...resume,
     headline:
       emphasis === "ai"
-        ? `${targetRole} | Full-Stack + Agentic AI`
-        : targetRole.toLowerCase().includes("full") || targetRole.toLowerCase().includes("software")
+        ? `${targetRole} | Full-Stack + Applied AI`
+        : targetRole.toLowerCase().includes("full") ||
+            targetRole.toLowerCase().includes("software") ||
+            targetRole.toLowerCase().includes("forward") ||
+            targetRole.toLowerCase().includes("applied")
           ? resume.headline
-          : `${targetRole} | Full-Stack Software Engineer`,
+          : `${targetRole} | ${resume.headline}`,
     summary: emphasis === "ai" ? aiSummary(targetRole) : fullstackSummary(targetRole),
     skills,
     experience,
     certifications,
-    projects,
+    projects: resume.projects,
     targetRole,
     emphasis,
     notes: [
-      "Every bullet, employer, date, and metric is taken from the source resume or publicly verifiable GitHub/certification materials.",
+      "Every bullet, employer, date, and metric is taken from the unified resume. Employers: BlackRock, First Bank, YAJ Tech.",
       emphasis === "ai"
-        ? "AI emphasis reorders facts and surfaces recent agent/RAG practice. It does not invent AI production tenure."
-        : "Full-stack emphasis keeps the production engineering narrative and only includes the Analytics Vidhya capstone as a project.",
+        ? "AI emphasis reorders facts and surfaces applied AI / agentic engineering. It does not invent employers or tenure."
+        : "Full-stack emphasis keeps the production engineering narrative and the Analytics Vidhya capstone.",
     ],
   };
 }
 
 export function slugifyRole(role: string) {
-  return role
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "")
-    .slice(0, 48) || "resume";
+  return (
+    role
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "")
+      .slice(0, 48) || "resume"
+  );
 }
 
 export function resumeFilename(input: { targetRole: string; emphasis: Emphasis; format: ResumeFormat }) {

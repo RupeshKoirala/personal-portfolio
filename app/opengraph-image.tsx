@@ -32,7 +32,7 @@ export default function OpenGraphImage() {
           <div style={{ marginTop: 24, fontSize: 36, color: "#22c1f1" }}>builds for scale.</div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, color: "#91a6b5" }}>
-          <span>Senior full-stack engineer</span>
+          <span>Forward deployed · applied AI · full-stack</span>
           <span>BlackRock · First Bank · YAJ Tech</span>
         </div>
       </div>

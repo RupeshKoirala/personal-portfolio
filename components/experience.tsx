@@ -3,18 +3,18 @@ import { resume } from "@/content/resume";
 const selectedOutcomes: Record<string, string[]> = {
   blackrock: [
     "65% lower query latency and 2.3× higher batch throughput after API and PostgreSQL tuning.",
-    "60% faster builds and zero-downtime Blue-Green delivery with GitHub Actions, Docker, and Terraform.",
-    "Observability stack (CloudWatch, Sentry, Grafana Loki, Jaeger) cut MTTR by 42%.",
+    "60% faster builds and zero-downtime blue-green delivery with Terraform, CloudFormation, GitHub Actions, and Docker.",
+    "Observability with CloudWatch, Sentry, Grafana Loki, and Jaeger cut MTTR by 42%.",
   ],
   firstbank: [
-    "CRM and financial data APIs on Spring Boot, PostgreSQL, and MongoDB; ~250ms lower processing latency.",
-    "AWS Fargate autoscaling cut about $1,200 in monthly infrastructure cost; critical endpoints 48% faster.",
-    "JWT, RBAC, and OAuth 2.0 at API Gateway aligned to least privilege and Zero Trust.",
+    "CRM tools and APIs on Spring Boot, Node.js, PostgreSQL, MongoDB, React, and Angular; ~250ms lower data-processing latency.",
+    "AWS ECS/Fargate and Kubernetes autoscaling cut about $1,200/month; high-traffic responses under 150ms.",
+    "JWT, OAuth 2.0, RBAC, and API Gateway with least-privilege / Zero Trust patterns.",
   ],
   yaj: [
-    "REST APIs on Spring Boot and Express handling 12K+ requests/day.",
-    "Multilingual React and Angular UI with RTL, i18n, and locale switching.",
-    "RSS and third-party ingestion via Spring Batch, Node cron, and Python — 40% more reliable sync.",
+    "REST APIs on Spring Boot and Node.js/TypeScript handling 12K+ requests/day.",
+    "Multilingual React and Angular UI with RTL and i18n.",
+    "RSS and third-party ingestion via Spring Batch, Node.js jobs, and Python — 40% more reliable sync.",
   ],
 };
 

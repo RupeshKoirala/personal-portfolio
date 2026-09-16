@@ -35,8 +35,9 @@ export const metadata: Metadata = {
   description: site.description,
   keywords: [
     "Rupesh Koirala",
+    "forward deployed engineer",
+    "applied AI engineer",
     "full-stack engineer",
-    "software developer",
     "BlackRock",
     "Spring Boot",
     "React",

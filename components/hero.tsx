@@ -1,4 +1,5 @@
-import { Monogram } from "@/components/monogram";
+import { LinkedInMark } from "@/components/linkedin-mark";
+import { Portrait } from "@/components/portrait";
 import { site } from "@/lib/site";
 
 export function Hero() {
@@ -6,7 +7,9 @@ export function Hero() {
     <section className="hero" id="top">
       <div className="shell hero-grid">
         <div>
-          <div className="availability">Senior engineer · cloud-native systems · {site.location}</div>
+          <div className="availability">
+            Forward deployed · applied AI · full-stack · {site.location}
+          </div>
           <h1 className="hero-title">
             Rupesh
             <br />
@@ -14,26 +17,33 @@ export function Hero() {
             <span>builds for scale.</span>
           </h1>
           <p className="hero-copy">
-            Full-stack software engineer with 6+ years designing and scaling secure, cloud-native
-            platforms across finance and enterprise systems—from event-driven services and real-time
-            data tools to fast, resilient web interfaces.
+            AI-focused software engineer with 6+ years building production distributed systems, APIs,
+            cloud platforms, and full-stack products across financial and enterprise environments —
+            including RAG, agentic workflows, and human-in-the-loop automation.
           </p>
           <div className="hero-actions">
-            <a className="button primary" href="#experience">
+            <a
+              className="button primary linkedin"
+              href={site.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Rupesh Koirala on LinkedIn"
+            >
+              <LinkedInMark />
+              LinkedIn
+            </a>
+            <a className="button secondary" href="#experience">
               View work
             </a>
             <a className="button secondary" href="/api/resume/generate?format=pdf">
               Download resume
             </a>
-            <a className="button secondary" href="#contact">
-              Contact
-            </a>
           </div>
         </div>
         <div className="portrait-wrap">
-          <Monogram />
+          <Portrait />
           <div className="portrait-caption">
-            <span>SOFTWARE ENGINEER</span>
+            <span>APPLIED AI · FULL-STACK</span>
             <span>CENTREVILLE, VA</span>
           </div>
         </div>

@@ -7,7 +7,14 @@ export function Footer() {
         <span>
           © {new Date().getFullYear()} {site.name}
         </span>
-        <span>Full-stack engineering · cloud systems · recent AI practice</span>
+        <span className="footer-links">
+          <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </a>
+          <a href={site.github} target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+        </span>
       </div>
     </footer>
   );

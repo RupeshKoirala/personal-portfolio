@@ -14,14 +14,15 @@ export function getSiteUrl() {
 export const site = {
   name: "Rupesh Koirala",
   shortName: "RK",
-  role: "Senior Software Engineer | Full-Stack Developer",
-  headline: "Senior Full-Stack Engineer",
+  role: "Forward Deployed Engineer | Applied AI Engineer | Full-Stack",
+  headline: "Forward Deployed Engineer",
   location: "Centreville, VA",
   email: "rupeshkoirala17@gmail.com",
   phoneDisplay: "+1 (412) 413-1351",
   phoneHref: "tel:+14124131351",
   linkedin: "https://www.linkedin.com/in/rupeshkoirala33/",
+  linkedinLabel: "linkedin.com/in/rupeshkoirala33",
   github: "https://github.com/RupeshKoirala",
   description:
-    "Rupesh Koirala is a senior full-stack software engineer in Centreville, VA, building secure, cloud-native systems for finance and enterprise teams.",
+    "Rupesh Koirala is a forward-deployed and applied AI engineer in Centreville, VA, building production full-stack systems, APIs, and cloud platforms across finance and enterprise teams.",
 } as const;

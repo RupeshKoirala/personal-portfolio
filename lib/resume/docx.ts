@@ -1,6 +1,7 @@
 import {
   AlignmentType,
   Document,
+  ExternalHyperlink,
   HeadingLevel,
   Packer,
   Paragraph,
@@ -30,6 +31,13 @@ function bullet(text: string) {
     spacing: { after: 60 },
     children: [new TextRun({ text, font: "Calibri", size: 20, color: "12202A" })],
   });
+}
+
+function educationRange(item: { start: string; end: string }) {
+  if (item.start.toLowerCase().includes("progress")) {
+    return "In Progress (Current)";
+  }
+  return `${item.start} – ${item.end}`;
 }
 
 export async function renderResumeDocx(data: TailoredResume): Promise<Buffer> {
@@ -62,15 +70,52 @@ export async function renderResumeDocx(data: TailoredResume): Promise<Buffer> {
       spacing: { after: 120 },
       children: [
         new TextRun({
-          text: `${data.location}  ·  ${data.email}  ·  ${data.phone}  ·  ${data.linkedin}  ·  ${data.github}`,
+          text: `${data.location}  ·  ${data.email}  ·  ${data.phone}  ·  `,
           size: 18,
           font: "Calibri",
           color: "4D6470",
         }),
+        new ExternalHyperlink({
+          link: data.linkedin,
+          children: [
+            new TextRun({
+              text: data.linkedin.replace(/^https?:\/\/(www\.)?/, ""),
+              size: 18,
+              font: "Calibri",
+              color: "0E7A96",
+              underline: {},
+            }),
+          ],
+        }),
+        new TextRun({
+          text: "  ·  ",
+          size: 18,
+          font: "Calibri",
+          color: "4D6470",
+        }),
+        new ExternalHyperlink({
+          link: data.github,
+          children: [
+            new TextRun({
+              text: data.github.replace(/^https?:\/\/(www\.)?/, ""),
+              size: 18,
+              font: "Calibri",
+              color: "0E7A96",
+              underline: {},
+            }),
+          ],
+        }),
       ],
     }),
     heading("Profile"),
-    ...data.summary.map((item) => bullet(item)),
+    ...data.summary.map((item) =>
+      data.summary.length === 1
+        ? new Paragraph({
+            spacing: { after: 80 },
+            children: [new TextRun({ text: item, font: "Calibri", size: 20, color: "12202A" })],
+          })
+        : bullet(item),
+    ),
     heading("Technical Skills"),
     ...data.skills.slice(0, 8).map(
       (group) =>
@@ -82,6 +127,8 @@ export async function renderResumeDocx(data: TailoredResume): Promise<Buffer> {
           ],
         }),
     ),
+    heading("Selected Applied AI / Agentic Engineering"),
+    ...data.appliedAI.map((item) => bullet(`${item.title}: ${item.text}`)),
     heading("Work Experience"),
   ];
 
@@ -110,12 +157,8 @@ export async function renderResumeDocx(data: TailoredResume): Promise<Buffer> {
     );
   }
 
-  if (data.emphasis === "ai" || data.projects.length > 0) {
-    children.push(heading("Projects & AI practice"));
-    if (data.emphasis === "ai") {
-      children.push(bullet(`${data.aiPractice.timeframe}: ${data.aiPractice.summary}`));
-      children.push(bullet(`Practice stack: ${data.aiPractice.stack.join(", ")}`));
-    }
+  if (data.projects.length > 0) {
+    children.push(heading("Projects"));
     for (const project of data.projects) {
       children.push(
         new Paragraph({
@@ -143,14 +186,16 @@ export async function renderResumeDocx(data: TailoredResume): Promise<Buffer> {
         spacing: { after: 20 },
         children: [
           new TextRun({ text: item.school, bold: true, font: "Calibri", size: 22 }),
-          new TextRun({ text: `  ·  ${item.location}`, font: "Calibri", size: 20, color: "4D6470" }),
+          ...(item.location
+            ? [new TextRun({ text: `  ·  ${item.location}`, font: "Calibri", size: 20, color: "4D6470" })]
+            : []),
         ],
       }),
       new Paragraph({
         spacing: { after: 80 },
         children: [
           new TextRun({
-            text: `${item.credential}  ·  ${item.start} – ${item.end}`,
+            text: `${item.credential}  ·  ${educationRange(item)}`,
             font: "Calibri",
             size: 20,
           }),

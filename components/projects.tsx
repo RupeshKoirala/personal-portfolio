@@ -5,14 +5,17 @@ export function Projects() {
     <section id="projects">
       <div className="shell">
         <div className="section-head">
-          <h2>AI practice, stated plainly.</h2>
-          <p>
-            Full-stack and cloud are the production center of gravity. Agentic AI is recent, serious
-            practice — RAG chatbots, multi-agent workflows, and an approved Analytics Vidhya capstone
-            — not years of AI production tenure.
-          </p>
+          <h2>Applied AI, in practice.</h2>
+          <p>{resume.aiPractice.summary}</p>
         </div>
         <p className="ai-note">{resume.aiPractice.timeframe}</p>
+        <ul className="ai-points">
+          {resume.appliedAI.map((item) => (
+            <li key={item.title}>
+              <strong>{item.title}.</strong> {item.text}
+            </li>
+          ))}
+        </ul>
         <div className="project-grid">
           {resume.projects.map((project) => (
             <a

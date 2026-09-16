@@ -1,6 +1,6 @@
 # Rupesh Koirala — Personal Portfolio
 
-Senior full-stack engineer portfolio: Next.js App Router, TypeScript, Tailwind CSS. Content lives in typed data shared by the site and resume exports. Ready for Vercel. No secrets required for the static site.
+Forward-deployed / applied AI / full-stack engineer portfolio: Next.js App Router, TypeScript, Tailwind CSS. Content lives in typed data shared by the site and resume exports. Ready for Vercel. No secrets required for the static site.
 
 Live local URL after `npm run dev`: [http://localhost:3000](http://localhost:3000)
 
@@ -40,22 +40,24 @@ Resume downloads hit `/api/resume/generate` as a Node.js serverless function.
 
 ## Resume downloads
 
-Base resume (full-stack emphasis):
+Unified resume (full-stack emphasis by default):
 
 - PDF: [`/api/resume/generate?format=pdf`](/api/resume/generate?format=pdf)
 - DOCX: [`/api/resume/generate?format=docx`](/api/resume/generate?format=docx)
 
 HTML preview + tailor form: [`/resume`](/resume)
 
+LinkedIn: [linkedin.com/in/rupeshkoirala33](https://www.linkedin.com/in/rupeshkoirala33/)
+
 ## Job-tailored generate API
 
 `POST /api/resume/generate`
 
-Re-ranks and rephrases the **same facts** for a target role. It does not invent employers, dates, or metrics. AI emphasis surfaces ~6–7 months of agent/RAG practice (LangChain, LangGraph, AutoGen, CrewAI, OpenAI SDK) and the Analytics Vidhya capstone. Full-stack emphasis keeps the production engineering narrative.
+Re-ranks the **same facts** from the unified resume for a target role. It does not invent employers, dates, or metrics. AI emphasis surfaces applied AI / agentic engineering and the Analytics Vidhya capstone. Full-stack emphasis keeps the production engineering narrative.
 
 ```json
 {
-  "targetRole": "Senior Full-Stack Engineer",
+  "targetRole": "Forward Deployed Engineer",
   "jobDescription": "Optional job description used only to re-rank bullets and skills.",
   "emphasis": "ai",
   "format": "pdf"
@@ -69,25 +71,23 @@ Re-ranks and rephrases the **same facts** for a target role. It does not invent 
 | `emphasis` | no | `fullstack` (default) or `ai`. |
 | `format` | no | `pdf` (default) or `docx`. |
 
-`GET /api/resume/generate?format=pdf&emphasis=ai&targetRole=AI%20Engineer` is the same generator for simple downloads.
+`GET /api/resume/generate?format=pdf&emphasis=ai&targetRole=Applied%20AI%20Engineer` is the same generator for simple downloads.
 
 Example:
 
 ```bash
 curl -X POST http://localhost:3000/api/resume/generate \
   -H 'Content-Type: application/json' \
-  -d '{"targetRole":"Senior AI Engineer","emphasis":"ai","format":"docx"}' \
+  -d '{"targetRole":"Forward Deployed Engineer","emphasis":"ai","format":"docx"}' \
   --output Rupesh_Koirala_resume.docx
 ```
 
-Next iteration ideas (not in this version): LLM rewriting behind a key, persisting tailored copies, or A/B section templates per company.
-
 ## Content rules
 
-Work history, metrics, education, and skills come from the source resume. Public certifications and GitHub projects are linked only when verifiable.
+Work history, metrics, education, and skills come from the unified resume. Public certifications and GitHub projects are linked only when verifiable.
 
-- Roles: BlackRock, First Bank, YAJ Tech Pvt. Ltd.
-- AI: recent practice + approved Agentic AI Pioneer Program capstone ([shopu-av](https://github.com/RupeshKoirala/shopu-av)). Study forks are labeled as study repos.
+- Employers: BlackRock, First Bank, YAJ Tech Pvt. Ltd.
+- Applied AI practice + approved Agentic AI Pioneer Program capstone ([shopu-av](https://github.com/RupeshKoirala/shopu-av)).
 
 ## Project layout
 
@@ -96,4 +96,5 @@ app/                # App Router pages, SEO, resume API
 components/         # Homepage sections
 content/resume.ts   # Source of truth
 lib/resume/         # Tailor + PDF/DOCX builders
+public/             # Headshot and static assets
 ```
