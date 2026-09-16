@@ -35,8 +35,9 @@ export const metadata: Metadata = {
   description: site.description,
   keywords: [
     "Rupesh Koirala",
+    "forward deployed engineer",
+    "applied AI engineer",
     "full-stack engineer",
-    "software developer",
     "BlackRock",
     "Spring Boot",
     "React",
@@ -77,8 +78,10 @@ const jsonLd = {
   telephone: site.phoneDisplay,
   address: {
     "@type": "PostalAddress",
+    streetAddress: site.streetAddress,
     addressLocality: "Centreville",
     addressRegion: "VA",
+    postalCode: site.postalCode,
     addressCountry: "US",
   },
   url: siteUrl,

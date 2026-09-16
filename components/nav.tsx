@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useId, useState } from "react";
+import { LinkedInMark } from "@/components/linkedin-mark";
 import { site } from "@/lib/site";
 
 const links = [
@@ -41,22 +42,34 @@ export function Nav() {
               {link.label}
             </Link>
           ))}
-          <a className="nav-cta" href="/api/resume/generate?format=pdf">
-            Download resume
+          <a className="nav-link-quiet" href="/api/resume/generate?format=pdf">
+            Resume
           </a>
         </div>
-        <button
-          className="menu-btn"
-          type="button"
-          aria-expanded={open}
-          aria-controls={drawerId}
-          onClick={() => setOpen(true)}
-        >
-          <span className="sr-only">Open menu</span>
-          <svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true">
-            <path d="M0 1h18M0 7h18M0 13h18" stroke="currentColor" strokeWidth="2" />
-          </svg>
-        </button>
+        <div className="nav-end">
+          <a
+            className="nav-cta"
+            href={site.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Rupesh Koirala on LinkedIn"
+          >
+            <LinkedInMark />
+            LinkedIn
+          </a>
+          <button
+            className="menu-btn"
+            type="button"
+            aria-expanded={open}
+            aria-controls={drawerId}
+            onClick={() => setOpen(true)}
+          >
+            <span className="sr-only">Open menu</span>
+            <svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true">
+              <path d="M0 1h18M0 7h18M0 13h18" stroke="currentColor" strokeWidth="2" />
+            </svg>
+          </button>
+        </div>
         </div>
       </nav>
       {open ? (
@@ -72,7 +85,13 @@ export function Nav() {
           <a href="/api/resume/generate?format=pdf" onClick={() => setOpen(false)}>
             Download PDF
           </a>
-          <a href="https://www.linkedin.com/in/rupeshkoirala33/" target="_blank" rel="noopener noreferrer">
+          <a
+            className="drawer-linkedin"
+            href={site.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+          >
             LinkedIn
           </a>
         </div>

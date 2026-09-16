@@ -52,8 +52,8 @@ export function ResumeGenerator() {
     <form className="generator" onSubmit={onSubmit}>
       <h2>Tailor a copy</h2>
       <p>
-        Re-ranks the same verified experience for a target role. AI emphasis surfaces recent
-        agent/RAG practice; it does not add fake tenure or employers.
+        Re-ranks the same unified resume for a target role. AI emphasis surfaces applied AI /
+        agentic engineering; it does not add employers, dates, or metrics.
       </p>
       <label>
         Target role

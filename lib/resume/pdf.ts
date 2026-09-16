@@ -18,6 +18,13 @@ function writeLines(doc: PDFKit.PDFDocument, lines: string[], options?: { indent
   }
 }
 
+function educationRange(item: { start: string; end: string }) {
+  if (item.start.toLowerCase().includes("progress")) {
+    return "In Progress (Current)";
+  }
+  return `${item.start} – ${item.end}`;
+}
+
 export function renderResumePdf(data: TailoredResume): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     const doc = new PDFDocument({
@@ -38,19 +45,28 @@ export function renderResumePdf(data: TailoredResume): Promise<Buffer> {
     const right = pageWidth - doc.page.margins.right;
     const width = right - left;
 
-    doc.rect(0, 0, pageWidth, 86).fill(NAVY);
-    doc.fillColor("#eaf7fb").font("Helvetica-Bold").fontSize(22).text(data.name.toUpperCase(), left, 22, {
+    doc.rect(0, 0, pageWidth, 96).fill(NAVY);
+    doc.fillColor("#eaf7fb").font("Helvetica-Bold").fontSize(22).text(data.name.toUpperCase(), left, 18, {
       width,
     });
-    doc.fillColor("#9de8ff").font("Helvetica").fontSize(10).text(data.headline, left, 50, { width });
-    doc.fillColor("#91a6b5").fontSize(8.5).text(
-      `${data.location}  ·  ${data.email}  ·  ${data.phone}  ·  LinkedIn  ·  GitHub`,
-      left,
-      66,
-      { width },
-    );
+    doc.fillColor("#9de8ff").font("Helvetica").fontSize(10).text(data.headline, left, 46, { width });
+    doc.fillColor("#91a6b5").fontSize(8).text(data.address, left, 62, { width });
+    doc.fillColor("#91a6b5").fontSize(8).text(`${data.email}  ·  ${data.phone}  ·  `, left, 76, {
+      width,
+      continued: true,
+    });
+    doc.fillColor("#9de8ff").text("LinkedIn", {
+      link: data.linkedin,
+      underline: true,
+      continued: true,
+    });
+    doc.fillColor("#91a6b5").text("  ·  ", { continued: true });
+    doc.fillColor("#9de8ff").text("GitHub", {
+      link: data.github,
+      underline: true,
+    });
 
-    doc.y = 104;
+    doc.y = 114;
 
     const section = (title: string) => {
       if (doc.y > 720) doc.addPage();
@@ -61,7 +77,10 @@ export function renderResumePdf(data: TailoredResume): Promise<Buffer> {
     };
 
     section("Profile");
-    writeLines(doc, data.summary.map((item) => `•  ${item}`));
+    writeLines(
+      doc,
+      data.summary.map((item) => (data.summary.length === 1 ? item : `•  ${item}`)),
+    );
 
     section("Technical Skills");
     for (const group of data.skills.slice(0, 8)) {
@@ -73,6 +92,12 @@ export function renderResumePdf(data: TailoredResume): Promise<Buffer> {
       doc.font("Helvetica").fillColor(MUTED).text(group.items.join(", "));
       doc.moveDown(0.15);
     }
+
+    section("Selected Applied AI / Agentic Engineering");
+    writeLines(
+      doc,
+      data.appliedAI.map((item) => `•  ${item.title}: ${item.text}`),
+    );
 
     section("Work Experience");
     for (const role of data.experience) {
@@ -89,14 +114,8 @@ export function renderResumePdf(data: TailoredResume): Promise<Buffer> {
       doc.moveDown(0.2);
     }
 
-    if (data.emphasis === "ai" || data.projects.length > 0) {
-      section("Projects & AI practice");
-      if (data.emphasis === "ai") {
-        writeLines(doc, [
-          `•  ${data.aiPractice.timeframe}: ${data.aiPractice.summary}`,
-          `•  Practice stack: ${data.aiPractice.stack.join(", ")}`,
-        ]);
-      }
+    if (data.projects.length > 0) {
+      section("Projects");
       for (const project of data.projects) {
         doc.font("Helvetica-Bold").fontSize(10).fillColor(INK).text(project.name, { continued: true });
         doc.font("Helvetica").fontSize(8.5).fillColor(MUTED).text(`  ·  ${project.timeframe}`);
@@ -106,20 +125,20 @@ export function renderResumePdf(data: TailoredResume): Promise<Buffer> {
 
     section("Education");
     for (const item of data.education) {
-      doc.font("Helvetica-Bold").fontSize(10).fillColor(INK).text(item.school, { continued: true });
-      doc.font("Helvetica").fontSize(9).fillColor(MUTED).text(`  ·  ${item.location}`);
-      doc.font("Helvetica").fontSize(9.5).fillColor(INK).text(`${item.credential}  ·  ${item.start} – ${item.end}`);
+      if (item.location) {
+        doc.font("Helvetica-Bold").fontSize(10).fillColor(INK).text(item.school, { continued: true });
+        doc.font("Helvetica").fontSize(9).fillColor(MUTED).text(`  ·  ${item.location}`);
+      } else {
+        doc.font("Helvetica-Bold").fontSize(10).fillColor(INK).text(item.school);
+      }
+      doc.font("Helvetica").fontSize(9.5).fillColor(INK).text(`${item.credential}  ·  ${educationRange(item)}`);
       doc.moveDown(0.15);
     }
 
     section("Certifications");
     for (const cert of data.certifications) {
       const dates = cert.expires ? `${cert.issued} – ${cert.expires}` : cert.issued;
-      doc
-        .font("Helvetica")
-        .fontSize(9.5)
-        .fillColor(INK)
-        .text(`•  ${cert.name} — ${cert.issuer} (${dates})`);
+      doc.font("Helvetica").fontSize(9.5).fillColor(INK).text(`•  ${cert.name} — ${cert.issuer} (${dates})`);
     }
 
     if (data.notes.length > 0) {

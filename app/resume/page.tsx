@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
+import { LinkedInMark } from "@/components/linkedin-mark";
 import { ResumeGenerator } from "@/components/resume-generator";
 import { resume } from "@/content/resume";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Resume",
-  description: "Base and job-tailored resume exports for Rupesh Koirala, generated from structured content.",
+  description: "Unified resume exports for Rupesh Koirala, generated from structured content.",
 };
 
 export default function ResumePage() {
@@ -14,11 +16,21 @@ export default function ResumePage() {
     <div className="resume-page">
       <main id="main" className="resume-sheet">
         <p className="mono" style={{ color: "#0e7a96", fontWeight: 700 }}>
-          {resume.location} · {resume.email} · {resume.phone}
+          {resume.address} · {resume.email} · {resume.phone}
         </p>
         <h1>{resume.name}</h1>
         <p style={{ color: "#4d6470", marginTop: 0 }}>{resume.headline}</p>
         <div className="hero-actions" style={{ marginTop: 18 }}>
+          <a
+            className="button primary linkedin"
+            href={site.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#07131d" }}
+          >
+            <LinkedInMark />
+            LinkedIn
+          </a>
           <a className="button primary" href="/api/resume/generate?format=pdf">
             Download PDF
           </a>
@@ -30,9 +42,15 @@ export default function ResumePage() {
           </Link>
         </div>
         <h2>Summary</h2>
+        {resume.summary.map((item) => (
+          <p key={item}>{item}</p>
+        ))}
+        <h2>Selected applied AI</h2>
         <ul>
-          {resume.summary.map((item) => (
-            <li key={item}>{item}</li>
+          {resume.appliedAI.map((item) => (
+            <li key={item.title}>
+              <strong>{item.title}.</strong> {item.text}
+            </li>
           ))}
         </ul>
         <h2>Experience</h2>
@@ -55,7 +73,11 @@ export default function ResumePage() {
         <ul>
           {resume.education.map((item) => (
             <li key={item.school}>
-              {item.school} — {item.credential} ({item.start} – {item.end})
+              {item.school} — {item.credential} (
+              {item.start.toLowerCase().includes("progress")
+                ? "In Progress (Current)"
+                : `${item.start} – ${item.end}`}
+              {item.location ? ` · ${item.location}` : ""})
             </li>
           ))}
         </ul>

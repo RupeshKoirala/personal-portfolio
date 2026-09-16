@@ -46,16 +46,23 @@ export type Project = {
   kind: "capstone" | "study";
 };
 
+export type AppliedAIItem = {
+  title: string;
+  text: string;
+};
+
 export type ResumeData = {
   name: string;
   headline: string;
   location: string;
+  address: string;
   email: string;
   phone: string;
   linkedin: string;
   github: string;
   summary: string[];
   skills: SkillGroup[];
+  appliedAI: AppliedAIItem[];
   experience: Role[];
   education: EducationItem[];
   certifications: Certification[];
@@ -69,153 +76,124 @@ export type ResumeData = {
 
 export const resume: ResumeData = {
   name: "Rupesh Koirala",
-  headline: "Senior Software Engineer | Full-Stack Developer",
+  headline: "Forward Deployed Engineer | Applied AI Engineer | Full-Stack",
   location: "Centreville, VA",
+  address: "5812 Rock Forest Ct, Centreville, VA 20121",
   email: "rupeshkoirala17@gmail.com",
   phone: "+1 (412) 413-1351",
   linkedin: "https://www.linkedin.com/in/rupeshkoirala33/",
   github: "https://github.com/RupeshKoirala",
   summary: [
-    "Full-Stack Software Engineer with 6+ years of experience designing and scaling secure, cloud-native platforms across finance and enterprise systems, delivering resilient microservices, real-time data tools, and self-service web applications for firms like BlackRock and Fiserv.",
-    "Deep technical foundation across backend frameworks (Spring Boot, Express.js), frontend libraries (React.js, Angular), cloud and infrastructure tools (AWS Lambda, Fargate, EC2, S3), databases (PostgreSQL, MongoDB, DynamoDB), and CI/CD pipelines (GitHub Actions, Docker) and testing (Jest, JUnit).",
-    "Specialist of scalable system design, API security (JWT, RBAC), query optimization, serverless deployments, and observability, using engineering principles such as modular architecture, domain-driven design, and event-driven patterns.",
-    "Highly collaborative partner to cross-functional teams, including PMs, designers, and QA, while working in Agile environments to reduce sprint friction, drive down rework, and deliver stable features through thorough code reviews.",
-    "Trusted technical lead on initiatives involving refactoring, performance tuning, CI/CD ownership, and mentoring junior developers, while proactively contributing to knowledge-sharing through peer reviews and documentation.",
+    "AI-focused software engineer with 6+ years building production distributed systems, APIs, cloud platforms, and full-stack products across financial and enterprise environments. Hands-on with LLM applications, RAG, agentic workflows, tool calling, structured outputs, retrieval, evaluation, and human-in-the-loop automation — backed by strong Python, TypeScript, React, Node.js, Spring Boot, AWS, PostgreSQL, Docker, event-driven architecture, observability, and CI/CD. Best suited to forward-deployed and applied AI work where customer problems, rapid prototyping, architecture, integration, and production delivery meet.",
   ],
   skills: [
     {
-      label: "Programming Languages",
+      label: "AI / LLM",
       items: [
-        "Java 8/11/17",
-        "JavaScript (ES6+)",
-        "TypeScript",
-        "Python 3.x",
-        "SQL",
-        "Bash/Shell",
+        "LLM APIs",
+        "RAG",
+        "AI agents",
+        "Tool/function calling",
+        "Prompt & context engineering",
+        "Structured outputs",
+        "Embeddings",
+        "Vector search",
+        "Reranking",
+        "MCP concepts",
+        "Evals",
+        "Guardrails",
+        "HITL",
       ],
     },
     {
-      label: "Frontend",
+      label: "AI stack",
       items: [
-        "React.js",
-        "React Hooks",
-        "Redux",
-        "Next.js",
-        "Angular (4/6/13/15)",
-        "HTML5",
-        "CSS3",
-        "Bootstrap",
-        "Tailwind CSS",
-        "Material UI",
-        "Storybook",
-        "Webpack",
-        "Vite",
-      ],
-    },
-    {
-      label: "Backend",
-      items: [
-        "Spring Boot",
-        "Spring MVC",
-        "Spring Security",
-        "Node.js (Express.js, NestJS)",
-        "Flask",
-        "RESTful APIs",
-        "GraphQL",
-        "gRPC",
+        "Python",
+        "FastAPI",
+        "Pydantic",
+        "LangChain/LangGraph-style orchestration",
+        "OpenAI/Anthropic-compatible APIs",
+        "PostgreSQL/pgvector",
+        "Redis",
+        "REST",
         "WebSockets",
-        "Microservices",
-        "Serverless (AWS Lambda)",
-        "Event-Driven Architecture (Kafka, SNS/SQS)",
-        "JWT/OAuth2",
-        "Resilience4j",
-        "Circuit Breaker Pattern",
       ],
     },
     {
-      label: "Cloud & DevOps",
+      label: "Full-stack",
       items: [
-        "AWS (Lambda, ECS, EC2, EKS, S3, CloudWatch, Fargate, DynamoDB, RDS, API Gateway, Step Functions, Glue, SNS, CloudFormation)",
-        "Terraform",
+        "TypeScript",
+        "JavaScript",
+        "React",
+        "Next.js",
+        "Redux",
+        "Angular",
+        "Node.js (Express/NestJS)",
+        "Java",
+        "Spring Boot",
+        "GraphQL",
+      ],
+    },
+    {
+      label: "Cloud / platform",
+      items: [
+        "AWS (Lambda, ECS/Fargate, EC2, EKS, S3, API Gateway, Step Functions, DynamoDB, RDS, SNS/SQS)",
         "Docker",
-        "Jenkins",
-        "GitHub Actions",
         "Kubernetes",
-        "Helm",
-        "ArgoCD",
-        "Prometheus",
-        "Grafana",
-        "Blue-Green Deployments",
-        "CI/CD Pipelines",
-        "Secrets Manager",
-        "KMS",
+        "Terraform",
+        "GitHub Actions",
       ],
     },
     {
-      label: "Databases",
+      label: "Data / architecture",
       items: [
+        "Distributed systems",
+        "Event-driven/microservices",
         "PostgreSQL",
-        "MySQL",
         "MongoDB",
         "DynamoDB",
-        "Oracle",
         "Redis",
         "Elasticsearch",
-        "Cassandra",
-        "Sybase ASE",
+        "SQL",
+        "Caching",
+        "Query optimization",
       ],
     },
     {
-      label: "Web Services & APIs",
-      items: ["REST", "SOAP (SOAPUI, JAX-WS)", "GraphQL", "OpenAPI", "AsyncAPI", "gRPC"],
-    },
-    {
-      label: "Testing & QA",
-      items: ["JUnit", "Mockito", "TDD", "BDD", "Jest"],
-    },
-    {
-      label: "Monitoring & Observability",
+      label: "Reliability / security",
       items: [
-        "Amazon CloudWatch",
-        "Sentry",
-        "Grafana Loki",
-        "Jaeger",
-        "Prometheus",
         "OpenTelemetry",
-        "Datadog",
+        "CloudWatch",
         "Splunk",
-        "PagerDuty",
-        "New Relic",
+        "Grafana",
+        "Jaeger",
+        "Datadog",
+        "CI/CD",
+        "OAuth2/JWT/RBAC",
+        "Testing (JUnit, Jest, Mockito)",
       ],
     },
+  ],
+  appliedAI: [
     {
-      label: "Architecture & Design",
-      items: [
-        "Domain-Driven Design (DDD)",
-        "Event-Driven Architecture (EDA)",
-        "CQRS",
-        "Saga Pattern",
-        "SOLID Principles",
-        "Clean Architecture",
-        "Design Patterns",
-        "High Availability",
-        "Load Balancing",
-        "Distributed Systems",
-      ],
+      title: "Agentic workflow systems",
+      text: "Multi-step LLM workflows with APIs, tools, state, validation, retries, structured outputs, and human approval for business-process automation.",
     },
     {
-      label: "Security & Compliance",
-      items: [
-        "OAuth2.0",
-        "OpenID Connect",
-        "JWT",
-        "RBAC",
-        "Zero Trust",
-        "API Gateway Authorization",
-        "OWASP",
-        "SonarQube",
-        "Vulnerability Scanning",
-      ],
+      title: "Enterprise RAG assistants",
+      text: "Ingestion, chunking, embeddings, semantic retrieval, grounded generation, citations, access-aware retrieval, and retrieval/evaluation tuning.",
+    },
+    {
+      title: "AI-native full-stack products",
+      text: "Model-backed Python/FastAPI or Node services connected to React/TypeScript UIs with streaming, tool execution, session state, persistence, and telemetry.",
+    },
+    {
+      title: "LLM reliability",
+      text: "Prompt/version testing, schema validation, fallback/retry, regression checks, latency/cost tracking, hallucination-reduction patterns, and observability.",
+    },
+    {
+      title: "AI-assisted delivery",
+      text: "Architecture exploration, implementation, debugging, tests, refactoring, and rapid prototyping with engineering review retained.",
     },
   ],
   experience: [
@@ -225,50 +203,38 @@ export const resume: ResumeData = {
       title: "Software Developer",
       location: "New York, NY",
       start: "Mar. 2024",
-      end: "Present",
+      end: "Jun. 2026",
       startSort: "2024-03",
       summary:
-        "Delivered event-driven microservices and high-performance React interfaces for a trading platform. Reduced query latency by 65%, lifted batch throughput 2.3×, and accelerated zero-downtime delivery through automated infrastructure and CI/CD.",
+        "Built and scaled event-driven backend services and React/TypeScript interfaces for a full-stack trading platform supporting real-time transaction workflows.",
       bullets: [
         {
-          text: "Delivered scalable event-driven microservices and high-performance React.js interfaces for a full-stack trading platform, enabling real-time trade processing and optimized query execution for faster, more reliable user experiences.",
-          tags: ["backend", "frontend", "react", "microservices", "event-driven", "trading"],
+          text: "Built and scaled event-driven backend services and React/TypeScript interfaces for a full-stack trading platform supporting real-time transaction workflows.",
+          tags: ["backend", "frontend", "react", "typescript", "microservices", "event-driven", "trading"],
         },
         {
-          text: "Built and maintained dynamic React.js, TypeScript, and Redux web applications with reusable Hooks and components, driving UX consistency and improving interaction speed by 40%.",
+          text: "Built and maintained React.js, TypeScript, and Redux applications with reusable Hooks and components, improving interaction speed by 40%.",
           tags: ["frontend", "react", "typescript", "redux", "performance"],
         },
         {
-          text: "Led integration efforts for CI/CD pipelines using GitHub Actions, Docker, and monorepo patterns, streamlining deployment and reducing build time by 60%.",
-          tags: ["devops", "cicd", "github-actions", "docker", "leadership"],
-        },
-        {
-          text: "Refactored API layer using Express.js, PostgreSQL indexing, Query Execution Plan Analysis, and AWS CloudWatch Profiler with Flamegraph, achieving 65% lower query latency and 2.3× higher batch throughput.",
+          text: "Refactored API and data-access layers using Express.js, PostgreSQL indexing, query-plan analysis, and AWS profiling, achieving 65% lower query latency and 2.3× higher batch throughput.",
           tags: ["backend", "api", "postgres", "aws", "performance", "observability"],
         },
         {
-          text: "Developed shared frontend modules by collaborating with product and design teams, enabling code reuse and uniform features across multiple React.js web apps.",
+          text: "Created reusable service and frontend modules across applications; partnered with product and design for shared patterns.",
           tags: ["frontend", "react", "collaboration", "design"],
         },
         {
-          text: "Standardized infrastructure provisioning with Terraform and AWS CloudFormation, and accelerated CI/CD automation through GitHub Actions, reducing deployment time by 60% and implementing Blue-Green deployment for zero downtime.",
+          text: "Standardized infrastructure and CI/CD with Terraform, CloudFormation, GitHub Actions, Docker, and blue-green deployment, reducing deployment/build time by 60% with zero-downtime releases.",
           tags: ["cloud", "aws", "terraform", "cicd", "devops"],
         },
         {
-          text: "Implemented an observability stack with Amazon CloudWatch, Sentry, Grafana Loki, and Jaeger, reducing mean time to resolution by 42% and improving detection latency.",
+          text: "Implemented CloudWatch, Sentry, Grafana Loki, and Jaeger observability, reducing mean time to resolution by 42%.",
           tags: ["observability", "aws", "monitoring", "sre"],
         },
         {
-          text: "Built automated test suites with JUnit and Mockito, achieving 90% code coverage and proactively detecting critical regressions.",
-          tags: ["testing", "java", "quality"],
-        },
-        {
-          text: "Conducted thorough pull request reviews to ensure code quality, scalability, and compliance standards, providing clear feedback and mentoring junior engineers in best practices.",
-          tags: ["leadership", "mentoring", "quality"],
-        },
-        {
-          text: "Delivered technical presentations on system designs, emerging trends, and integration strategies to senior stakeholders using visualization tools and narrative storytelling.",
-          tags: ["leadership", "communication", "architecture"],
+          text: "Partnered with product, design, QA, and senior stakeholders; reviewed code and mentored junior engineers.",
+          tags: ["leadership", "mentoring", "quality", "collaboration"],
         },
       ],
     },
@@ -281,34 +247,30 @@ export const resume: ResumeData = {
       end: "Feb. 2024",
       startSort: "2021-03",
       summary:
-        "Built internal CRM tools and secure APIs across Spring Boot, Node.js, React, Angular, PostgreSQL, and MongoDB. Improved critical endpoint performance while lowering monthly infrastructure costs through autoscaling.",
+        "Developed internal CRM tools, backend APIs, and automation workflows using Spring Boot, Node.js, PostgreSQL, MongoDB, React, and Angular.",
       bullets: [
         {
-          text: "Developed internal CRM tools and backend APIs to automate customer service workflows and enhanced financial data analysis, employing Spring Boot and PostgreSQL and MongoDB for microservice orchestration and complex data management, reducing data processing latency by approximately 250ms.",
-          tags: ["backend", "java", "spring", "postgres", "mongodb", "microservices", "finance"],
+          text: "Developed internal CRM tools, backend APIs, and automation workflows using Spring Boot, Node.js, PostgreSQL, MongoDB, React, and Angular, reducing operational rework and data-processing latency by approximately 250ms.",
+          tags: ["backend", "frontend", "java", "spring", "node", "postgres", "mongodb", "react", "angular", "finance"],
         },
         {
-          text: "Crafted aesthetically pleasing UI components with React and Angular, incorporating SOLID and DRY principles along with virtual DOM diffing, memoization, and lazy loading, which improved overall application speed by 40%.",
-          tags: ["frontend", "react", "angular", "performance"],
+          text: "Designed scalable microservices on AWS ECS/Fargate and Kubernetes; autoscaling reduced infrastructure cost by ~$1,200/month while keeping high-traffic responses under 150ms.",
+          tags: ["backend", "aws", "kubernetes", "cloud", "performance", "microservices"],
         },
         {
-          text: "Optimized backend services for high scalability using Spring Boot and Node.js, cutting $1,200 in monthly infrastructure costs via AWS Fargate autoscaling, while improving traffic flow with NGINX and deploying microservices through Amazon ECS and Kubernetes to support the Event-Driven Pattern, reducing response times to under 150ms.",
-          tags: ["backend", "spring", "node", "aws", "kubernetes", "event-driven", "performance"],
-        },
-        {
-          text: "Enforced scalable and secure APIs using JWT-based authentication and Role-Based Access Control, integrating OAuth 2.0 with Amazon API Gateway to align with the Principle of Least Privilege and Zero Trust Architecture, reducing latency by approximately 120ms.",
+          text: "Implemented JWT, OAuth 2.0, RBAC, and Amazon API Gateway with least-privilege / Zero Trust patterns.",
           tags: ["security", "api", "aws", "oauth", "jwt"],
         },
         {
-          text: "Boosted query performance in MongoDB and PostgreSQL with Read/Write Splitting and CQRS, reducing response times by 48% across critical high-traffic endpoints.",
+          text: "Improved PostgreSQL and MongoDB performance via indexing, caching, and CQRS-style separation, reducing response times by 48% on critical endpoints.",
           tags: ["data", "postgres", "mongodb", "performance", "architecture"],
         },
         {
-          text: "Developed an alerting pipeline with AWS SNS, CloudWatch, and Slack, integrating CloudWatch Metrics and New Relic, orchestrated through PagerDuty and Splunk On-Call, incorporating auto remediation workflows and blameless postmortems, achieving response initiation latency under 60 seconds.",
+          text: "Built alerting/incident workflows with AWS SNS, CloudWatch, Slack, New Relic, PagerDuty, and Splunk (sub-60-second response initiation).",
           tags: ["observability", "aws", "sre", "monitoring"],
         },
         {
-          text: "Collaborated with product managers, developers, and QA engineers to streamline Agile processes, achieving a 40% reduction in sprint handoffs and rework through enhanced communication and iterative feedback loops.",
+          text: "Collaborated across product, engineering, and QA to reduce sprint handoffs and rework by 40%.",
           tags: ["collaboration", "agile", "leadership"],
         },
       ],
@@ -325,37 +287,28 @@ export const resume: ResumeData = {
         "Built localized full-stack features handling 12K+ daily API requests and automated data pipelines that improved sync reliability by 40%.",
       bullets: [
         {
-          text: "Developed RESTful APIs using Java (Spring Boot) and Node.js (TypeScript + Express) for calendar, news, and astrology modules, handling 12K+ requests/day.",
+          text: "Developed Java/Spring Boot and Node.js/TypeScript REST APIs for calendar, news, and astrology modules handling 12K+ requests/day.",
           tags: ["backend", "java", "spring", "node", "typescript", "api"],
         },
         {
-          text: "Built responsive, multilingual frontend components with React.js, Angular 13, and Tailwind CSS, implementing RTL, i18n, and dynamic locale switching.",
-          tags: ["frontend", "react", "angular", "i18n"],
+          text: "Built multilingual React/Angular interfaces (RTL, i18n); integrated PostgreSQL, MongoDB, and Firebase.",
+          tags: ["frontend", "react", "angular", "i18n", "data", "postgres", "mongodb"],
         },
         {
-          text: "Integrated PostgreSQL, MongoDB, and Firebase Realtime DB for structured and semi-structured content delivery, using query optimization and caching.",
-          tags: ["data", "postgres", "mongodb", "firebase"],
-        },
-        {
-          text: "Automated daily data ingestion from RSS feeds and third-party APIs using Spring Batch, Node.js cron jobs, and Python scripts, improving sync reliability by 40%.",
-          tags: ["data", "python", "etl", "pipelines", "ai-adjacent"],
-        },
-        {
-          text: "Deployed services on AWS EC2 and Lambda, used S3 for static content hosting, and applied alerting with SNS + CloudWatch Alarms.",
-          tags: ["cloud", "aws", "devops", "observability"],
-        },
-        {
-          text: "Wrote unit and integration tests using JUnit, Mockito, PyTest, and Jest, ensuring coverage across backend modules and ETL pipelines.",
-          tags: ["testing", "python", "java", "quality"],
-        },
-        {
-          text: "Managed local dev environments using Docker Compose, Git, and Postman, and collaborated through JIRA, Confluence, and daily Agile stand-ups.",
-          tags: ["devops", "docker", "collaboration"],
+          text: "Automated ingestion from RSS and third-party APIs with Spring Batch, Node.js jobs, and Python, improving sync reliability by 40%; deployed on AWS EC2/Lambda with Docker-based development and automated testing.",
+          tags: ["data", "python", "etl", "pipelines", "aws", "docker", "testing", "ai-adjacent"],
         },
       ],
     },
   ],
   education: [
+    {
+      school: "Indiana Wesleyan University",
+      credential: "Graduate studies in Artificial Intelligence & Machine Learning",
+      location: "",
+      start: "In Progress",
+      end: "Current",
+    },
     {
       school: "Robert Morris University",
       credential: "Bachelor of Science in Engineering",
@@ -447,30 +400,23 @@ export const resume: ResumeData = {
       stack: ["LangChain", "LangGraph", "Chroma", "OpenAI", "Flask", "TextBlob"],
       kind: "capstone",
     },
-    {
-      name: "awesome-ai-apps",
-      timeframe: "Hands-on study collection",
-      href: "https://github.com/RupeshKoirala/awesome-ai-apps",
-      blurb:
-        "Public study fork of RAG, agent, workflow, and MCP app patterns — used for practice, not claimed as original product work.",
-      stack: ["RAG", "Agents", "MCP", "Workflows"],
-      kind: "study",
-    },
-    {
-      name: "awesome-llm-apps",
-      timeframe: "Hands-on study collection",
-      href: "https://github.com/RupeshKoirala/awesome-llm-apps",
-      blurb:
-        "Public study fork of LLM apps with agents and RAG across OpenAI, Anthropic, Gemini, and open-source models.",
-      stack: ["LLM apps", "RAG", "Agents"],
-      kind: "study",
-    },
   ],
   aiPractice: {
-    timeframe: "Recent practice · ~6–7 months",
+    timeframe: "Selected applied AI / agentic engineering",
     summary:
-      "Building RAG chatbots and multi-agent workflows on top of a full-stack foundation. This is current, hands-on practice — not multi-year AI production tenure.",
-    stack: ["LangChain", "LangGraph", "AutoGen", "CrewAI", "OpenAI SDK", "RAG", "AI agents"],
+      "Hands-on with LLM applications, RAG, agentic workflows, tool calling, structured outputs, retrieval, evaluation, and human-in-the-loop automation — on a production full-stack and cloud foundation.",
+    stack: [
+      "LLM APIs",
+      "RAG",
+      "AI agents",
+      "LangChain/LangGraph",
+      "Python",
+      "FastAPI",
+      "pgvector",
+      "Structured outputs",
+      "Evals",
+      "HITL",
+    ],
   },
 };
 
@@ -483,33 +429,33 @@ export const proofPoints = [
 
 export const capabilityCards = [
   {
-    title: "Architecture & cloud delivery",
-    copy: "Microservices, event-driven systems, serverless workloads, infrastructure as code, and production observability designed as one coherent delivery system.",
-    stack: ["AWS", "Terraform", "Docker", "Kubernetes", "Kafka", "CloudWatch"],
+    title: "Applied AI & agents",
+    copy: "LLM applications, RAG assistants, agentic workflows, tool calling, structured outputs, retrieval, evaluation, and human-in-the-loop automation connected to real product surfaces.",
+    stack: ["RAG", "Agents", "LangChain/LangGraph", "Python", "FastAPI", "pgvector"],
     wide: true,
   },
   {
-    title: "Backend systems",
-    copy: "Secure, testable service layers with pragmatic data access and resilient integrations.",
-    stack: ["Java", "Spring Boot", "Node.js", "Python"],
+    title: "Full-stack products",
+    copy: "TypeScript and Java services with React, Next.js, Angular, and Node interfaces that stay fast and maintainable.",
+    stack: ["TypeScript", "React", "Next.js", "Spring Boot", "Node.js"],
     wide: false,
   },
   {
-    title: "Product interfaces",
-    copy: "Responsive application experiences tuned for clarity, speed, and maintainability.",
-    stack: ["React", "Angular", "TypeScript", "Next.js"],
+    title: "Cloud platforms",
+    copy: "AWS delivery with containers, infrastructure as code, and CI/CD designed as one coherent system.",
+    stack: ["AWS", "Docker", "Kubernetes", "Terraform", "GitHub Actions"],
     wide: false,
   },
   {
-    title: "Data foundations",
-    copy: "Query optimization, hybrid storage, ETL workflows, and scalable access patterns.",
-    stack: ["PostgreSQL", "MongoDB", "DynamoDB", "Redis"],
+    title: "Data & architecture",
+    copy: "Distributed systems, event-driven services, and query-conscious access across SQL and document stores.",
+    stack: ["PostgreSQL", "MongoDB", "DynamoDB", "Redis", "Elasticsearch"],
     wide: false,
   },
   {
-    title: "Quality & leadership",
-    copy: "Testing strategy, reviews, mentoring, documentation, and calm cross-functional delivery.",
-    stack: ["JUnit", "Jest", "Mockito", "TDD"],
+    title: "Reliability & security",
+    copy: "Observability, CI/CD, OAuth2/JWT/RBAC, and testing as part of production delivery — not afterthoughts.",
+    stack: ["OpenTelemetry", "CloudWatch", "Grafana", "OAuth2/JWT", "Jest/JUnit"],
     wide: false,
   },
 ] as const;
