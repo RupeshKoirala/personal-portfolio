@@ -16,7 +16,7 @@ export default function ResumePage() {
     <div className="resume-page">
       <main id="main" className="resume-sheet">
         <p className="mono" style={{ color: "#0e7a96", fontWeight: 700 }}>
-          {resume.location} · {resume.email} · {resume.phone}
+          {resume.address} · {resume.email} · {resume.phone}
         </p>
         <h1>{resume.name}</h1>
         <p style={{ color: "#4d6470", marginTop: 0 }}>{resume.headline}</p>

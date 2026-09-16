@@ -78,8 +78,10 @@ const jsonLd = {
   telephone: site.phoneDisplay,
   address: {
     "@type": "PostalAddress",
+    streetAddress: site.streetAddress,
     addressLocality: "Centreville",
     addressRegion: "VA",
+    postalCode: site.postalCode,
     addressCountry: "US",
   },
   url: siteUrl,

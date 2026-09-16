@@ -45,12 +45,13 @@ export function renderResumePdf(data: TailoredResume): Promise<Buffer> {
     const right = pageWidth - doc.page.margins.right;
     const width = right - left;
 
-    doc.rect(0, 0, pageWidth, 86).fill(NAVY);
-    doc.fillColor("#eaf7fb").font("Helvetica-Bold").fontSize(22).text(data.name.toUpperCase(), left, 22, {
+    doc.rect(0, 0, pageWidth, 96).fill(NAVY);
+    doc.fillColor("#eaf7fb").font("Helvetica-Bold").fontSize(22).text(data.name.toUpperCase(), left, 18, {
       width,
     });
-    doc.fillColor("#9de8ff").font("Helvetica").fontSize(10).text(data.headline, left, 50, { width });
-    doc.fillColor("#91a6b5").fontSize(8).text(`${data.location}  ·  ${data.email}  ·  ${data.phone}  ·  `, left, 66, {
+    doc.fillColor("#9de8ff").font("Helvetica").fontSize(10).text(data.headline, left, 46, { width });
+    doc.fillColor("#91a6b5").fontSize(8).text(data.address, left, 62, { width });
+    doc.fillColor("#91a6b5").fontSize(8).text(`${data.email}  ·  ${data.phone}  ·  `, left, 76, {
       width,
       continued: true,
     });
@@ -65,7 +66,7 @@ export function renderResumePdf(data: TailoredResume): Promise<Buffer> {
       underline: true,
     });
 
-    doc.y = 104;
+    doc.y = 114;
 
     const section = (title: string) => {
       if (doc.y > 720) doc.addPage();

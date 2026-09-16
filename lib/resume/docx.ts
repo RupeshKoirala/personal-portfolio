@@ -70,7 +70,7 @@ export async function renderResumeDocx(data: TailoredResume): Promise<Buffer> {
       spacing: { after: 120 },
       children: [
         new TextRun({
-          text: `${data.location}  ·  ${data.email}  ·  ${data.phone}  ·  `,
+          text: `${data.address}  ·  ${data.email}  ·  ${data.phone}  ·  `,
           size: 18,
           font: "Calibri",
           color: "4D6470",

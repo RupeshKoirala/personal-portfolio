@@ -55,6 +55,7 @@ export type ResumeData = {
   name: string;
   headline: string;
   location: string;
+  address: string;
   email: string;
   phone: string;
   linkedin: string;
@@ -77,6 +78,7 @@ export const resume: ResumeData = {
   name: "Rupesh Koirala",
   headline: "Forward Deployed Engineer | Applied AI Engineer | Full-Stack",
   location: "Centreville, VA",
+  address: "5812 Rock Forest Ct, Centreville, VA 20121",
   email: "rupeshkoirala17@gmail.com",
   phone: "+1 (412) 413-1351",
   linkedin: "https://www.linkedin.com/in/rupeshkoirala33/",
@@ -201,7 +203,7 @@ export const resume: ResumeData = {
       title: "Software Developer",
       location: "New York, NY",
       start: "Mar. 2024",
-      end: "Present",
+      end: "Jun. 2026",
       startSort: "2024-03",
       summary:
         "Built and scaled event-driven backend services and React/TypeScript interfaces for a full-stack trading platform supporting real-time transaction workflows.",
