@@ -30,7 +30,7 @@ export function Monogram() {
         ))}
         <circle cx="248" cy="72" r="46" fill="none" stroke="#ffb86b" strokeWidth="1.5" />
         <path
-          d="M58 92v216M58 92h78c42 0 68 22 68 58 0 30-18 50-52 56L210 308"
+          d="M52 88v224M52 88h84c46 0 74 24 74 64s-28 62-74 62H52"
           fill="none"
           stroke="url(#rkGlow)"
           strokeWidth="16"
@@ -38,11 +38,12 @@ export function Monogram() {
           strokeLinejoin="round"
         />
         <path
-          d="M148 200h-90"
+          d="M214 88v224M214 200l78-112M214 200l84 112"
           fill="none"
           stroke="url(#rkGlow)"
           strokeWidth="16"
           strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </div>

@@ -29,8 +29,9 @@ export function Nav() {
   }, [open]);
 
   return (
-    <nav className="nav" aria-label="Primary navigation">
-      <div className="shell nav-inner">
+    <>
+      <nav className="nav" aria-label="Primary navigation">
+        <div className="shell nav-inner">
         <Link className="brand" href="/#top" aria-label={`${site.name} home`}>
           RK<span>/</span>
         </Link>
@@ -56,7 +57,8 @@ export function Nav() {
             <path d="M0 1h18M0 7h18M0 13h18" stroke="currentColor" strokeWidth="2" />
           </svg>
         </button>
-      </div>
+        </div>
+      </nav>
       {open ? (
         <div className="drawer" id={drawerId} role="dialog" aria-modal="true" aria-label="Site menu">
           <button className="drawer-close" type="button" onClick={() => setOpen(false)} aria-label="Close menu">
@@ -75,6 +77,6 @@ export function Nav() {
           </a>
         </div>
       ) : null}
-    </nav>
+    </>
   );
 }
