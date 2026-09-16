@@ -124,8 +124,12 @@ export function renderResumePdf(data: TailoredResume): Promise<Buffer> {
 
     section("Education");
     for (const item of data.education) {
-      doc.font("Helvetica-Bold").fontSize(10).fillColor(INK).text(item.school, { continued: true });
-      doc.font("Helvetica").fontSize(9).fillColor(MUTED).text(item.location ? `  ·  ${item.location}` : "");
+      if (item.location) {
+        doc.font("Helvetica-Bold").fontSize(10).fillColor(INK).text(item.school, { continued: true });
+        doc.font("Helvetica").fontSize(9).fillColor(MUTED).text(`  ·  ${item.location}`);
+      } else {
+        doc.font("Helvetica-Bold").fontSize(10).fillColor(INK).text(item.school);
+      }
       doc.font("Helvetica").fontSize(9.5).fillColor(INK).text(`${item.credential}  ·  ${educationRange(item)}`);
       doc.moveDown(0.15);
     }
